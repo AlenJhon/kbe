@@ -191,7 +191,6 @@ public:
 	static void onEntityDestroy(PyObject* pEntity, ScriptDefModule* pEntityScriptDescrs, bool callScript, bool beforeDestroy);
 	void onOwnerDestroyBegin(PyObject* pEntity, ScriptDefModule* pEntityScriptDescrs, bool callScript);
 	void onOwnerDestroyEnd(PyObject* pEntity, ScriptDefModule* pEntityScriptDescrs, bool callScript);
-	void onOwnerDestroyClear(PyObject* pEntity, ScriptDefModule* pEntityScriptDescrs);
 
 	PropertyDescription* pPropertyDescription() const {
 		return pPropertyDescription_;

@@ -186,11 +186,6 @@ public:
 	*/
 	void forwardEntityMessageToCellappFromClient(Network::Channel* pChannel, MemoryStream& s);
 
-	/** 网络接口
-		请求设置flags
-	*/
-	void reqSetFlags(Network::Channel* pChannel, MemoryStream& s);
-
 	/**
 		获取游戏时间
 	*/

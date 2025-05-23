@@ -97,6 +97,7 @@ bool DataTypes::loadTypes(std::string& file)
 	if (access(file.c_str(), 0) != 0)
 		return true;
 
+	DEBUG_MSG(fmt::format("DataTypes::loadTypes: file={}.\n", file.c_str()));
 	SmartPointer<XML> xml(new XML(Resmgr::getSingleton().matchRes(file).c_str()));
 	return loadTypes(xml);
 }
@@ -179,6 +180,8 @@ bool DataTypes::loadTypes(SmartPointer<XML>& xml)
 
 				addDataType(aliasName, dataType);
 			}
+			DEBUG_MSG(fmt::format("DataTypes::loadTypes: aliasName={}, type={}.\n",
+				aliasName.c_str(), type.c_str()));
 		}
 	}
 	XML_FOR_END(node);

@@ -124,22 +124,6 @@ void Loginapp::onChannelDeregister(Network::Channel * pChannel)
 				(*pBundle).newMessage(DbmgrInterface::eraseClientReq);
 				(*pBundle) << extra;
 				dbmgrinfos->pChannel->send(pBundle);
-
-                // 把请求交由脚本处理
-                SCOPED_PROFILE(SCRIPTCALL_PROFILE);
-                PyObject* pyResult = PyObject_CallMethod(getEntryScript().get(), 
-                                                    const_cast<char*>("onLoseLogin"), 
-                                                    const_cast<char*>("s"), 
-                                                    extra.c_str());
-
-                if(pyResult != NULL)
-                {
-                    Py_DECREF(pyResult);
-                }
-                else
-                {
-                    SCRIPT_ERROR_CHECK();
-                }
 			}
 		}
 	}
@@ -1627,9 +1611,6 @@ void Loginapp::importClientSDK(Network::Channel* pChannel, MemoryStream& s)
 //-------------------------------------------------------------------------------------
 void Loginapp::onBaseappInitProgress(Network::Channel* pChannel, float progress)
 {
-	if(pChannel->isExternal())
-		return;
-		
 	if(progress > 1.f)
 	{
 		INFO_MSG(fmt::format("Loginapp::onBaseappInitProgress: progress={}.\n", 
